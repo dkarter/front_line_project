@@ -12,7 +12,7 @@ config :ui,
 # Configures the endpoint
 config :ui, UiWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "tSOopOR8V7jFykR6+GRnldYYN5UMZvxYSmNa8CiZKEZhctb8m/PYMcvTDgc39Xoe",
+  secret_key_base: "WvZcI96nYi7OevZdmJcPTw49HNYIcWdZo2c4r9x4inVApmg49YO6cTroyJRkz2Vn",
   render_errors: [view: UiWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Ui.PubSub,
            adapter: Phoenix.PubSub.PG2]
