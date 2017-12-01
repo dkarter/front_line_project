@@ -38,7 +38,7 @@ defmodule FrontLine.Mixfile do
   end
   def application(_target) do
     [mod: {FrontLine.Application, []},
-     extra_applications: [:logger]]
+     extra_applications: [:logger, :runtime_tools]]
   end
 
   # Dependencies can be Hex packages:
@@ -60,10 +60,12 @@ defmodule FrontLine.Mixfile do
   def deps(target) do
     [
       {:bootloader, "~> 0.1"},
-      {:nerves_runtime, "~> 0.4"},
-      {:nerves_network, "~> 0.3"},
-      {:nerves_firmware_ssh, "~> 0.3"},
       {:elixir_ale, "~> 1.0"},
+      {:nerves_firmware_ssh, "~> 0.3"},
+      {:nerves_init_gadget, "~> 0.2"},
+      {:nerves_network, "~> 0.3"},
+      {:nerves_runtime, "~> 0.4"},
+      {:picam, "~> 0.1"},
       {:ui, in_umbrella: true},
     ] ++ system(target)
   end

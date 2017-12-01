@@ -24,28 +24,23 @@ defmodule FrontLine.MotionWorker do
 
   def handle_info({:gpio_interrupt, pin, :rising}, state) do
     if state[:debounce_timer] do
-      Logger.debug "========================= debounced"
       Process.cancel_timer(state[:debounce_timer])
     else
       GPIO.write(state[:output_pid], 1)
+      UiWeb.Endpoint.broadcast("motion:lobby", "motion", %{active: true})
     end
 
     timer = Process.send_after(self(), :motion_stopped, @debounce_time)
     state = Map.put(state, :debounce_timer, timer)
-    Logger.debug "MotionWorker got :rising signal on #{pin}"
 
     {:noreply, state}
   end
-
-  def handle_info({:gpio_interrupt, pin, :falling}, state) do
-    Logger.debug "MotionWorker got :falling signal on #{pin}"
-    {:noreply, state}
-  end
+  def handle_info({:gpio_interrupt, pin, _}, state), do: {:noreply, state}
 
   def handle_info(:motion_stopped, state) do
-    Logger.debug "--------------------------- motion stopped"
     GPIO.write(state[:output_pid], 0)
     state = Map.delete(state, :debounce_timer)
+    UiWeb.Endpoint.broadcast("motion:lobby", "motion", %{active: false})
     {:noreply, state}
   end
 end

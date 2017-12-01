@@ -1,4 +1,0 @@
-# FrontLineProject
-
-**TODO: Add description**
-

@@ -20,7 +20,7 @@ config :nerves_firmware_ssh,
   ]
 
 config :bootloader,
-  init: [:nerves_runtime, :nerves_network],
+  init: [:nerves_runtime, :nerves_init_gadget],
   app: :front_line
 
 config :front_line, input_pin: 20
@@ -28,7 +28,7 @@ config :front_line, output_pin: 26
 
 config :ui, UiWeb.Endpoint,
   http: [port: 80],
-  url: [host: "localhost", port: 80],
+  url: [host: "nerves.local", port: 80],
   secret_key_base: "tSOopOR8V7jFykR6+GRnldYYN5UMZvxYSmNa8CiZKEZhctb8m/PYMcvTDgc39Xoe",
   root: Path.dirname(__DIR__),
   server: true,

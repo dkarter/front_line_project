@@ -37,7 +37,7 @@ help() {
     exit 1
 }
 
-[ -n "$DESTINATION" ] || DESTINATION=192.168.1.233
+[ -n "$DESTINATION" ] || DESTINATION='nerves.local'
 [ -n "$MIX_TARGET" ] || MIX_TARGET=rpi0
 [ -n "$MIX_ENV" ] || MIX_ENV=dev
 [ -n "$FILENAME" ] || FILENAME=$(ls ./_build/$MIX_TARGET/$MIX_ENV/nerves/images/*.fw 2> /dev/null | head -n 1)

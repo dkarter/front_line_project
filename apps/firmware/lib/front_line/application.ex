@@ -10,6 +10,8 @@ defmodule FrontLine.Application do
     # Define workers and child supervisors to be supervised
     children = [
       worker(FrontLine.MotionWorker, []),
+      worker(Picam.Camera, []),
+      worker(FrontLine.CameraWorker, []),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
